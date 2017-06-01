@@ -116,5 +116,11 @@ button {
     margin: 0;
     padding: 0;
 }
+
 /*Media Queries*/
 
+@media screen and (min-width: 768px) {
+    img {
+        display: block;
+    }
+}
