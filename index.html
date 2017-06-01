@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NewVideo</title>
     <link rel="stylesheet" type="text/css" href="src/normalize.css">
     <link rel="stylesheet" type="text/css" href="src/style.css">
 </head>
+
 <body>
     <header>
-        <div id="main-header">
+        <div id="main-header" class="page-element">
             <img src="img/logo.jpg" alt="Logo channel" id="logo">
             <input type="text" id="search">
             <button id="upload">Добавить видео</button>
@@ -18,13 +20,32 @@
     <div id="wrapper">
         <div class="container">
             <div class="video-stream">Видео</div>
-            <div class="watch-header">
+
+            <div class="watch-header page-element">
                 <h1>Заголовок</h1>
                 <div class="watch-description">
                     <p>Опубликовано</p>
                     <p>Количество просмотров</p>
                 </div>
-                <div class="watch-list"><p>Лист видео</p></div>
+            </div>
+
+            <div class="watch-list page-element">
+
+                <div class="video-item">
+                    <div class="preview">Видео</div>
+                    <div class="item-title">
+                        <h4>Заголовок</h4>
+                        <p>Количество просмотров</p>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <div class="preview">Видео</div>
+                    <div class="item-title">
+                        <h4>Заголовок</h4>
+                        <p>Количество просмотров</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
