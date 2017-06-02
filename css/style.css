@@ -10,22 +10,31 @@ body {
     background-color: #F1F1F1;
     margin: 0;
 }
+
+header {
+    min-height: 60px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    margin-bottom: 10px;
+}
+
 ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 p {
-    padding: 10px;
+    margin: 5px 10px;
     font-size: .95em;
 }
+
 h1,
 h3,
 a {
     margin: 10px;
 }
-h2,
-h3 {
+
+h2 {
     margin-top: 0;
 }
 a {
@@ -36,13 +45,11 @@ a {
 /*Layout Containers*/
 
 #main-header {
-    text-align: center;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     min-height: 60px;
-    margin: 10px;
 }
 
 .page-element {
@@ -52,15 +59,20 @@ a {
 }
 
 .container {
+    width: 426px;
+    margin: 0 auto;
+}
+
+.row {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
 }
 
 .video-stream {
-    min-height: 300px;
+    min-width: 246px;
+    min-height: 240px;
     margin: 0 10px;
-    /*background: lightgrey;*/
+    background: lightgrey;
 }
 
 .watch-header {
@@ -72,6 +84,11 @@ a {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.watch-list {
+    min-height: 200px;
+    min-width: 200px;
 }
 
 .video-item {
@@ -99,9 +116,13 @@ button {
     margin: 0 15px;
 }
 
+.video-stream iframe {
+    width: 100%;
+}
+
 .preview,
 .item-title p,
-.item-title h4 {
+.item-title h5 {
     cursor: pointer;
 }
 
@@ -126,7 +147,7 @@ button {
 }
 
 .item-title p,
-.item-title h4 {
+.item-title h5 {
     margin: 0;
     padding: 0;
 }
@@ -134,7 +155,64 @@ button {
 /*Media Queries*/
 
 @media screen and (min-width: 768px) {
+    
+    .container {
+        width: 660px;
+        margin: 0 auto;
+    }
+
     img#logo {
         display: block;
     }
+        
+    .video-stream,
+    .video-stream iframe {
+        width: 640px;
+        height: 360px
+    }
+
+    .watch-header {
+        padding: 20px 0;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+
+    .container {
+        width: 90%;
+    }
+
+    .row {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .watch-header,
+    .video-stream {
+        max-width: 640px;
+    }
+    
+    .watch-list {
+        max-width: 450px;
+        flex: 1 300px;
+        height: 100%;
+        margin: 0;
+    }
+    
+}
+
+@media screen and (min-width: 1200px) {
+    
+    /*.container {
+        width: 874px;
+        margin: 0 auto;
+    }*/
+    
+    /*.video-stream,
+    .video-stream iframe {
+        width: 854px;
+        height: 480px
+    }*/
+
 }

@@ -43,12 +43,23 @@ document.addEventListener('DOMContentLoaded', function () {
 			let item = playlist[i].data;
 			
 			if (item.domain === "youtube.com"){
-				createListItem(item.title, item.score, item.media.oembed.thumbnail_url, item.url);
+				// let video = {
+				// 	title: item.title,
+				// 	score: item.score,
+				// 	thumbnail: item.media.oembed.thumbnail_url,
+				// 	url: item.url,
+				// 	created: item.created_utc,
+				// 	html: item.media.oembed.html
+				// }
+				// videoList.push(video);
+				createListItem(item.title, item.score, item.media.oembed.thumbnail_url,
+				 item.url, item.created_utc);
 			}
 
 		}
 
-		startVideo(parseId(playlist[0].data.url));
+		// startVideo(parseId(playlist[0].data.url));
+		// console.log(videoList);
 	}
 	
 
@@ -56,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	// adding video-items from data and initialize video
 	//
 
-	function createListItem(header, score, img, url) {
+	function createListItem(header, score, img, url, created) {
 		let listItem = document.createElement("div");
 		listItem.className = 'video-item';
 		listItem.innerHTML = `
@@ -64,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
       	<img src="${img}" alt="${header}">
       </div>
       <div class="item-title">
-          <h4>${header}</h4>
+          <h5>${header}</h5>
           <p>${score}</p>
       </div>
 		`;
@@ -72,27 +83,32 @@ document.addEventListener('DOMContentLoaded', function () {
 		// creating event listener for each video of our list
 
 		listItem.videoId = parseId(url);
-		listItem.html = url;
+		listItem.header = header;
+		listItem.score = score;
+		listItem.created = created;
 
 		listItem.addEventListener('click', (e) => {
 			let currentClass = e.target.className;
 			if(currentClass !== 'video-item' && currentClass !== 'item-title') {
-				console.log(e.target.parentElement.parentElement.videoId);
-				startVideo(e.target.parentElement.parentElement.videoId);
+				let target = e.target.parentElement.parentElement;
+				startVideo(target.videoId, target.header, target.score, target.created);
 			}
 		});
 
 		list.appendChild(listItem);
 	}
 	
-	function startVideo(id) {
+	function startVideo(id, header, score, created) {
 		video.innerHTML = `
 			 <iframe type="text/html" 
-       width="640" height="360"
-       src="http://www.youtube.com/embed/${id}"
+       width="426" height="240"
+       src="https://www.youtube.com/embed/${id}"
        frameborder="0">
        </iframe>
 		`;
+		title.innerHTML = header;
+		view.innerHTML = score;
+		time.innerHTML = getTime(created);
 	}
 	
 
@@ -122,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // 
-// pure functions
+// pure functions for parsing videoId and Time
 // 
 
 function parseId(url){
@@ -132,3 +148,12 @@ function parseId(url){
 	}
 	
 // console.log('parseId', parseId('https://www.youtube.com/watch?v=b-v-lTtS_os'));
+
+function getTime(ut) {
+	let months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля',
+		 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+	let utTime = new Date(ut * 1000);
+	let month = months[utTime.getMonth()];
+	let time = `${utTime.getDate()} ${month} ${utTime.getFullYear()}`
+	return time;
+}

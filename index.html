@@ -10,25 +10,27 @@
 
 <body>
     <header>
-        <div id="main-header" class="page-element">
-            <img src="img/logo.jpg" alt="Logo channel" id="logo">
-            <input type="text" id="search">
-            <button id="upload">Добавить видео</button>
+        <div class="container">
+            <div id="main-header">
+                <img src="img/logo.jpg" alt="Logo channel" id="logo">
+                <input type="text" id="search">
+                <button id="upload">Добавить видео</button>
+            </div>
         </div>
     </header>
 
-    <div id="wrapper">
-        <div class="container">
-            <div class="video-stream">Видео</div>
-
-            <div class="watch-header page-element">
-                <h1 id="watch-title">Заголовок</h1>
-                <div class="watch-description">
-                    <p>Опубликовано: <span id="watch-time"></span></p>
-                    <p>Количество просмотров: <span id="watch-view"></span></p>
+    <div class="container">
+        <div class="row">
+            <div class="video-box">
+                <div class="video-stream">Видео</div>
+                <div class="watch-header page-element">
+                    <h3 id="watch-title">Заголовок</h3>
+                    <div class="watch-description">
+                        <p>Опубликовано: <span id="watch-time"></span></p>
+                        <p>Количество просмотров: <span id="watch-view"></span></p>
+                    </div>
                 </div>
             </div>
-
             <div class="watch-list page-element">
 
                 <!-- here are our video-items -->
