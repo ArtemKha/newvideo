@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 	//
-	// pulling data and initialize creating functions
+	// pulling data
 	//
 
 	function pullData () {
@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 	pullData();
 
+	//
+	// calling creating video-list function
+	//
 
 	function onDataReady(){
 
@@ -41,25 +44,21 @@ document.addEventListener('DOMContentLoaded', function () {
 		for (var i = playlist.length - 1; i >= 0; i--) {
 			
 			let item = playlist[i].data;
-			
 			if (item.domain === "youtube.com"){
-				// let video = {
-				// 	title: item.title,
-				// 	score: item.score,
-				// 	thumbnail: item.media.oembed.thumbnail_url,
-				// 	url: item.url,
-				// 	created: item.created_utc,
-				// 	html: item.media.oembed.html
-				// }
-				// videoList.push(video);
-				createListItem(item.title, item.score, item.media.oembed.thumbnail_url,
-				 item.url, item.created_utc);
+				let info = {
+					header: item.title,
+					score: item.score,
+					img: item.media.oembed.thumbnail_url,
+					url: item.url,
+					created: item.created_utc,
+				}
+				createListItem(info);
 			}
 
 		}
 
-		// startVideo(parseId(playlist[0].data.url));
-		// console.log(videoList);
+		let firstVideo = document.querySelector('.video-item');
+		startVideo(firstVideo.info);
 	}
 	
 
@@ -67,38 +66,37 @@ document.addEventListener('DOMContentLoaded', function () {
 	// adding video-items from data and initialize video
 	//
 
-	function createListItem(header, score, img, url, created) {
+	function createListItem(info) {
 		let listItem = document.createElement("div");
 		listItem.className = 'video-item';
 		listItem.innerHTML = `
       <div class="preview">
-      	<img src="${img}" alt="${header}">
+      	<img src="${info.img}" alt="${info.header}">
       </div>
       <div class="item-title">
-          <h5>${header}</h5>
-          <p>${score}</p>
+          <h5>${info.header}</h5>
+          <p>${info.score}</p>
       </div>
 		`;
 		
 		// creating event listener for each video of our list
 
-		listItem.videoId = parseId(url);
-		listItem.header = header;
-		listItem.score = score;
-		listItem.created = created;
+		listItem.info = info;
 
 		listItem.addEventListener('click', (e) => {
 			let currentClass = e.target.className;
 			if(currentClass !== 'video-item' && currentClass !== 'item-title') {
-				let target = e.target.parentElement.parentElement;
-				startVideo(target.videoId, target.header, target.score, target.created);
+				let targetInfo = e.target.parentElement.parentElement.info;
+				startVideo(targetInfo);
 			}
 		});
 
 		list.appendChild(listItem);
 	}
 	
-	function startVideo(id, header, score, created) {
+	function startVideo(info) {
+
+		let id = parseId(info.url);
 		video.innerHTML = `
 			 <iframe type="text/html" 
        width="426" height="240"
@@ -106,9 +104,9 @@ document.addEventListener('DOMContentLoaded', function () {
        frameborder="0">
        </iframe>
 		`;
-		title.innerHTML = header;
-		view.innerHTML = score;
-		time.innerHTML = getTime(created);
+		title.innerHTML = info.header;
+		view.innerHTML = info.score;
+		time.innerHTML = getTime(info.created);
 	}
 	
 

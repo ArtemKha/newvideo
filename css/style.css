@@ -164,6 +164,7 @@ button {
     img#logo {
         display: block;
     }
+
         
     .video-stream,
     .video-stream iframe {
@@ -188,13 +189,13 @@ button {
         justify-content: center;
     }
     
+    .watch-list,
     .watch-header,
     .video-stream {
         max-width: 640px;
     }
     
     .watch-list {
-        max-width: 450px;
         flex: 1 300px;
         height: 100%;
         margin: 0;
@@ -204,15 +205,29 @@ button {
 
 @media screen and (min-width: 1200px) {
     
-    /*.container {
-        width: 874px;
+    .container {
+        width: 100%;
         margin: 0 auto;
-    }*/
+    }
     
-    /*.video-stream,
+    .watch-list {
+        max-width: 400px;
+        margin: 0 20px;
+    }
+
+    .watch-header,
+    .video-stream,
     .video-stream iframe {
-        width: 854px;
-        height: 480px
-    }*/
+        min-width: 854px;
+    }
+
+    .video-stream,
+    .video-stream iframe {
+        height: 480px;
+    }
+
+    .video-box {
+        flex-basis: 854px;
+    }
 
 }
