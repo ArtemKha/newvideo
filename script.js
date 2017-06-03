@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let scoreform = document.getElementsByName("score")[0];
   let urlform = document.getElementsByName("url")[0];
   let submit = document.getElementsByName("submit")[0];
-	console.log(scoreform.value, titleform.value, urlform.value)
 
 	//variables for search
   const searchform = document.getElementById('searchform');
@@ -37,10 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 	
 	function isIncluded(info){
-		// let localData = JSON.parse(localStorage.getItem('videoList'));
 		if (videoList) {
 			for (let i = 0; i < videoList.length; i++) {
-				console.log(videoList[i].header);
 				if(videoList[i].header === info.header) {
 					return true;
 				}
@@ -70,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	      return false;
 	    }
 	    videoList.push(info);
-	    console.log(videoList);
 	    localStorage.setItem('videoList', JSON.stringify(videoList));
 	    return true;
 	  } else return false;
