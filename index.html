@@ -1,46 +1,55 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NewVideo</title>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
 
-<head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NewVideo</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-
-<body>
-    <header>
-        <div class="container">
-            <div id="main-header">
-                <img src="img/logo.jpg" alt="Logo channel" id="logo">
-                <input type="text" id="search">
-                <button id="upload">Добавить видео</button>
-            </div>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="row">
-            <div class="video-box">
-                <div class="video-stream">Видео</div>
-                <div class="watch-header page-element">
-                    <h3 id="watch-title">Заголовок</h3>
-                    <div class="watch-description">
-                        <p>Опубликовано: <span id="watch-time"></span></p>
-                        <p>Количество просмотров: <span id="watch-view"></span></p>
-                    </div>
+    <body>
+        <header>
+            <div class="container">
+                <div id="main-header">
+                    <img src="img/logo.jpg" alt="Logo channel" id="logo">
+                    <input type="text" id="search">
+                    <a href="#modal-form"><button id="upload">Добавить видео</button></a>
                 </div>
             </div>
-            <div class="watch-list page-element">
+        </header>
+        
+        <div class="modal" id="modal-form">
+            <div class="modal-container">
+                <p>Fillout the form, please</p>
+                <a href="#modal-close">Close</a>
+            </div>
+        </div>
 
-                <!-- here are our video-items -->
+        <div class="container">
+            <div class="row">
+                <div class="video-box">
+                    <div class="video-stream">Видео</div>
+                    <div class="watch-header page-element">
+                        <h3 id="watch-title">Заголовок</h3>
+                        <div class="watch-description">
+                            <p>Опубликовано: <span id="watch-time"></span></p>
+                            <p>Количество просмотров: <span id="watch-view"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="watch-list page-element">
+
+                    <!-- here are our video-items -->
+
+                </div>
 
             </div>
-
         </div>
-    </div>
 
-    <footer></footer>
-    <script src="script.js"></script>
-</body>
+        <footer></footer>
+
+        
+
+        <script src="script.js"></script>
+    </body>
 </html>
