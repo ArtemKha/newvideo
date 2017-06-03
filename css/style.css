@@ -38,10 +38,15 @@ h2 {
     margin-top: 0;
 }
 a {
+    color: #3a3a3a;
     text-decoration: none;
 }
-a button {
-    color: #3a3a3a;
+
+input {
+    margin-left: 10px;
+    border-color: lightgrey;
+    width: 90%;
+    height: 30px;
 }
 
 
@@ -102,10 +107,37 @@ a button {
 
 /*Page Elements*/
 
-input#search {
+#search {
     margin-right: auto;
     margin-left: 10px;
     width: 40%;
+    height: 30px;
+}
+
+#search form {
+    display: flex;
+}
+
+#search form button,
+#search form input {
+    flex-basis: 1;
+    border-width: 1px;
+}
+/*#search form input {
+    max-width: 70%;
+}*/
+
+
+#search button {
+    width: 50px;
+    height: 30px;
+    margin: 0;
+    background-color: #4CAF50;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("../img/zoom.png");
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 img#logo {
@@ -179,7 +211,7 @@ button {
     content: "";
     position: fixed;
     display: none;
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.4);
     top: 0;
     left: 0;
     height: 100%;

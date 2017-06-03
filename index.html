@@ -12,7 +12,12 @@
             <div class="container">
                 <div id="main-header">
                     <img src="img/logo.jpg" alt="Logo channel" id="logo">
-                    <input type="text" id="search">
+                    <div id="search">
+                        <form>
+                            <input type="text" name="name">
+                            <button type="submit" value="submit"></button>
+                        </form>
+                    </div>
                     <a href="#modal-form"><button id="upload">Добавить видео</button></a>
                 </div>
             </div>
@@ -20,8 +25,21 @@
         
         <div class="modal" id="modal-form">
             <div class="modal-container">
-                <p>Fillout the form, please</p>
-                <a href="#modal-close">Close</a>
+                
+                <!-- title - заголовок видео;
+                created_utc - дата публикации;
+                score - кол-во просмотров; -->
+                
+
+                <form id="upload-form">
+                  Добавить видео:<br><br>
+                  <input type="text" name="score" placeholder="Заголовок видео"><br><br>
+                  <input type="date" name="date" value="2017-01-02"><br><br>
+                  <input type="text" name="url" placeholder="https://www.youtube.com/?..."><br><br>
+                  <input type="submit" value="Добавить видео"><br><br>
+                </form>
+
+                <a id="close" href="#modal-close">Закрыть</a>
             </div>
         </div>
 

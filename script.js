@@ -49,6 +49,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	const time = document.getElementById('watch-time');
 	const view = document.getElementById('watch-view');
 
+	//variables for adding video
+  const form = document.getElementById('upload-form');
 
 	function initializeApp(){
 		videoList = getVideoList();
