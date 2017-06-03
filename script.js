@@ -11,6 +11,20 @@ document.addEventListener('DOMContentLoaded', function () {
       return false;
     }
   }
+	
+	function isIncluded(info){
+		// let localData = JSON.parse(localStorage.getItem('videoList'));
+		if (videoList) {
+			for (let i = 0; i < videoList.length; i++) {
+				console.log(videoList[i].header);
+				if(videoList[i].header === info.header) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
 
   function getVideoList(){
   	if (supportsLocalStorage()) {
@@ -25,13 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
   	} else return false;
   } 
 
-  function saveVideoList(str) {
+  function saveVideoList(info) {
   	if (supportsLocalStorage()) {
 	    videoList = getVideoList();
-	    if (videoList.indexOf(str) > -1 || !str) {
+	    if (videoList.indexOf(info) > -1 || !info) {
 	      return false;
 	    }
-	    videoList.push(str);
+	    videoList.push(info);
+	    console.log(videoList);
 	    localStorage.setItem('videoList', JSON.stringify(videoList));
 	    return true;
 	  } else return false;
@@ -51,6 +66,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	//variables for adding video
   const form = document.getElementById('upload-form');
+  let titleform = document.getElementsByName("title")[0];
+  let scoreform = document.getElementsByName("score")[0];
+  let urlform = document.getElementsByName("url")[0];
+  let submit = document.getElementsByName("submit")[0];
+	console.log(scoreform.value, titleform.value, urlform.value)
 
 	function initializeApp(){
 		videoList = getVideoList();
@@ -137,11 +157,12 @@ document.addEventListener('DOMContentLoaded', function () {
           <p>${info.score}</p>
       </div>
 		`;
-		
-		// creating event listener for each video of our list
 
 		listItem.info = info;
+		appendVideo(listItem);
+	}
 
+	function appendVideo(listItem) {
 		listItem.addEventListener('click', (e) => {
 			let currentClass = e.target.className;
 			if(currentClass !== 'video-item' && currentClass !== 'item-title') {
@@ -174,25 +195,42 @@ document.addEventListener('DOMContentLoaded', function () {
 	//
 
 	
-	function addListItem() {
+	function addListItem(info) {
 		let listItem = document.createElement("div");
 		listItem.className = 'video-item';
 		listItem.innerHTML = `
       <div class="preview">
-      	<img src="{info.img}" alt="{info.header}">
+      	<img src="${info.img}" alt="${info.header}">
       </div>
       <div class="item-title">
-          <h5>{info.header}</h5>
-          <p>{info.score}</p>
+          <h5>${info.header}</h5>
+          <p>${info.score}</p>
       </div>
 		`;
-		list.appendChild(listItem);
+		listItem.info = info;
+
+		saveVideoList(info);
+		appendVideo(listItem);
 	}
 
-	button.addEventListener('click', () => {
-		// addListItem();
+	form.addEventListener('submit', (e) => {
+		e.preventDefault();
+		let videoId = parseId(urlform.value);
+		let info = {
+			header: titleform.value,
+			score: scoreform.value,
+			img: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+			url: urlform.value,
+			created: new Date().getTime()/1000
+		}
+		if (!isIncluded(info)){
+			addListItem(info);
+		} else console.log('already here');
 	});
-
+	
+	submit.addEventListener('click', function() {
+		window.location.href='#modal-close';
+	});
 
 	// 
 	// pure functions for parsing videoId and Time

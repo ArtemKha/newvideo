@@ -44,7 +44,6 @@ a {
 
 input {
     margin-left: 10px;
-    border-color: lightgrey;
     width: 90%;
     height: 30px;
 }
@@ -110,7 +109,7 @@ input {
 #search {
     margin-right: auto;
     margin-left: 10px;
-    width: 40%;
+    width: 50%;
     height: 30px;
 }
 
@@ -122,17 +121,14 @@ input {
 #search form input {
     flex-basis: 1;
     border-width: 1px;
+    border-color: lightgrey;
 }
-/*#search form input {
-    max-width: 70%;
-}*/
 
 
 #search button {
     width: 50px;
     height: 30px;
     margin: 0;
-    background-color: #4CAF50;
     background-color: rgba(0, 0, 0, 0);
     background-image: url("../img/zoom.png");
     background-size: 40%;
